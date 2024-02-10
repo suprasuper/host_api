@@ -1,11 +1,15 @@
 const express = require('express');
+const PORT=3000;
 const axios = require("axios");
 var cors = require("cors");
 const players = [];
 
 
 const app = express();
-app.use(cors({ origin: 'http://127.0.0.1:5500' }))
+const options = {
+  origin: 'http://127.0.0.1:5500',
+}
+app.use(cors(options));
 
 const API_KEY = "RGAPI-faeead12-e326-47cc-8bc3-a3744ab2f0de"
 
@@ -26,5 +30,8 @@ app.get('/allLeagues',async(req,res)=>{
   players.length=0;
 })
   
+app.listen(PORT,()=>{
+  console.log(`Server running on port ${PORT}`)
+  })
 
 module.exports = app;
