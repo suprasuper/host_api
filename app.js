@@ -9,14 +9,6 @@ app.use(cors());
 
 const API_KEY = "RGAPI-faeead12-e326-47cc-8bc3-a3744ab2f0de"
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-    next();
-  });
-
-
 function getPLayer(id) {
   return axios.get("https://euw1.api.riotgames.com"+"/lol/league/v4/entries/by-summoner/"+id+"?api_key="+API_KEY)
           .then(response=>{
