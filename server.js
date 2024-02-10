@@ -7,7 +7,7 @@ const players = [];
 
 const app = express();
  var corsOptions = {
- origin: 'localhost:1550',
+ origin: '*',
  credentials : true
 }
 app.use(cors(corsOptions));
