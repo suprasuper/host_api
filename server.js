@@ -7,7 +7,7 @@ const players = [];
 
 const app = express();
 const options = {
-  origin: 'https://thibauddalbera.online',
+  origin: '*',
 }
 app.use(cors(options));
 
