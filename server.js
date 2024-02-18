@@ -2,7 +2,7 @@ const express = require('express');
 const PORT=3000;
 const axios = require("axios");
 var cors = require("cors");
-var champOfTheDay = 0;
+var champOfTheDay = Math.floor(Math.random() * 165);
 const players = [];
 var cron = require('node-cron');
 
