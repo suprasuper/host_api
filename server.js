@@ -1,25 +1,28 @@
 const express = require('express');
 const PORT=3000;
 const axios = require("axios");
+var whoFound = 0;
 var cors = require("cors");
-var champOfTheDay = Math.floor(Math.random() * 165);
+var champOfTheDay =  Math.floor(Math.random() * 165);
 const players = [];
 var cron = require('node-cron');
 
 cron.schedule('52 7 * * *', () => {
   champOfTheDay  = Math.floor(Math.random() * 165);
+  whoFound = 0;
   console.log('champ of the day : '+champOfTheDay);
+  console.log('nombre de personne ayant trouvée : '+whoFound);
 });
 
 
 const app = express();
- var corsOptions = {
- origin: '*',
- credentials: true
-}
+var corsOptions = {
+  origin: '*',
+  credentials: true
+ }
 app.use(cors(corsOptions));
 
-const API_KEY = "RGAPI-74249255-7317-4506-bb6e-cc282f7f4e44"
+const API_KEY = "RGAPI-faeead12-e326-47cc-8bc3-a3744ab2f0de"
 
 function getPLayer(id) {
   return axios.get("https://euw1.api.riotgames.com"+"/lol/league/v4/entries/by-summoner/"+id+"?api_key="+API_KEY)
@@ -37,11 +40,26 @@ app.get('/allLeagues',async(req,res)=>{
   res.status(200).json(players)
   players.length=0;
 })
+
+
 app.use(cors(corsOptions));
 app.get('/champOfTheDay',async(req,res)=>{
+  console.log(champOfTheDay)
   res.status(200).json(champOfTheDay)
 })
   
+app.use(cors(corsOptions));
+app.get('/whoFound',async(req,res)=>{
+  console.log("personne qui ont trouvé : "+whoFound)
+  res.status(200).json(whoFound)
+})
+  
+app.use(cors(corsOptions));
+app.get('/oneFound',async(req,res)=>{
+  whoFound++
+  res.status(200).json(whoFound)
+})
+
 app.listen(PORT,()=>{
   console.log(`Server running on port ${PORT}`)
   })
