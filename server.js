@@ -2,17 +2,24 @@ const express = require('express');
 const PORT=3000;
 const axios = require("axios");
 var cors = require("cors");
+var champOfTheDay = 0;
 const players = [];
+var cron = require('node-cron');
+
+cron.schedule('52 7 * * *', () => {
+  champOfTheDay  = Math.floor(Math.random() * 165);
+  console.log('champ of the day : '+champOfTheDay);
+});
 
 
 const app = express();
  var corsOptions = {
  origin: '*',
- credentials : true
+ credentials: true
 }
-app.use(cors(corsOptions));
+app.use(cors(options));
 
-const API_KEY = "RGAPI-bdc65185-6e39-4161-8faf-f038be02079f"
+const API_KEY = "RGAPI-faeead12-e326-47cc-8bc3-a3744ab2f0de"
 
 function getPLayer(id) {
   return axios.get("https://euw1.api.riotgames.com"+"/lol/league/v4/entries/by-summoner/"+id+"?api_key="+API_KEY)
@@ -29,6 +36,10 @@ app.get('/allLeagues',async(req,res)=>{
   }
   res.status(200).json(players)
   players.length=0;
+})
+app.use(cors(options));
+app.get('/champOfTheDay',async(req,res)=>{
+  res.status(200).json(champOfTheDay)
 })
   
 app.listen(PORT,()=>{
