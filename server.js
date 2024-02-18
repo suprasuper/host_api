@@ -7,7 +7,7 @@ var champOfTheDay =  Math.floor(Math.random() * 165);
 const players = [];
 var cron = require('node-cron');
 
-cron.schedule('52 7 * * *', () => {
+cron.schedule('0 0 * * *', () => {
   champOfTheDay  = Math.floor(Math.random() * 165);
   whoFound = 0;
   console.log('champ of the day : '+champOfTheDay);
