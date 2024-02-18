@@ -37,7 +37,7 @@ app.get('/allLeagues',async(req,res)=>{
   res.status(200).json(players)
   players.length=0;
 })
-app.use(cors(options));
+app.use(cors(corsOptions));
 app.get('/champOfTheDay',async(req,res)=>{
   res.status(200).json(champOfTheDay)
 })
