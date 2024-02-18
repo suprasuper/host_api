@@ -17,7 +17,7 @@ const app = express();
  origin: '*',
  credentials: true
 }
-app.use(cors(options));
+app.use(cors(corsOptions));
 
 const API_KEY = "RGAPI-faeead12-e326-47cc-8bc3-a3744ab2f0de"
 
