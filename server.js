@@ -22,7 +22,7 @@ var corsOptions = {
  }
 app.use(cors(corsOptions));
 
-const API_KEY = "RGAPI-5af8a2e8-a9c1-478d-a103-a40870a33c72"
+const API_KEY = "RGAPI-9b196488-c596-4edb-a913-154909f20feb"
 
 function getPLayer(id) {
   return axios.get("https://euw1.api.riotgames.com"+"/lol/league/v4/entries/by-summoner/"+id+"?api_key="+API_KEY)
